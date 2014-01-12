@@ -7,6 +7,11 @@
   <strong>Beers:</strong>
   <%= @brewery.beers.count %>
 </p>
+<p>
+  <% @brewery.beers.each do |b| %>
+  <%= link_to b.name, b %>
+  <% end %>
+</p>
 
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
