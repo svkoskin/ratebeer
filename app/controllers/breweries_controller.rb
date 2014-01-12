@@ -7,7 +7,7 @@ class BreweriesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @breweries }
-    end
+   end
   end
 
   # GET /breweries/1
