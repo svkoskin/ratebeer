@@ -1,0 +1,51 @@
+svkoskin@granholmen:~/railskurssi/ratebeer$ rails c
+Loading development environment (Rails 4.0.2)
+irb(main):001:0> bd = Brewery.create name:"BrewDog", year:2007
+   (0.3ms)  begin transaction
+  SQL (7.6ms)  INSERT INTO "breweries" ("created_at", "name", "updated_at", "year") VALUES (?, ?, ?, ?)  [["created_at", Sat, 18 Jan 2014 12:24:15 UTC +00:00], ["name", "BrewDog"], ["updated_at", Sat, 18 Jan 2014 12:24:15 UTC +00:00], ["year", 2007]]
+   (152.5ms)  commit transaction
+=> #<Brewery id: 11, name: "BrewDog", year: 2007, created_at: "2014-01-18 12:24:15", updated_at: "2014-01-18 12:24:15">
+irb(main):002:0> punk = Beer.create name:"Punk IPA", style:"IPA", brewery:bd
+   (0.2ms)  begin transaction
+  SQL (1.0ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 11], ["created_at", Sat, 18 Jan 2014 12:24:28 UTC +00:00], ["name", "Punk IPA"], ["style", "IPA"], ["updated_at", Sat, 18 Jan 2014 12:24:28 UTC +00:00]]
+   (130.7ms)  commit transaction
+=> #<Beer id: 20, name: "Punk IPA", style: "IPA", brewery_id: 11, created_at: "2014-01-18 12:24:28", updated_at: "2014-01-18 12:24:28">
+irb(main):003:0> ns = Beer.create name:"Nanny State", style:"lowalcohol", brewery:bd
+   (0.4ms)  begin transaction
+  SQL (1.3ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 11], ["created_at", Sat, 18 Jan 2014 12:24:52 UTC +00:00], ["name", "Nanny State"], ["style", "lowalcohol"], ["updated_at", Sat, 18 Jan 2014 12:24:52 UTC +00:00]]
+   (121.8ms)  commit transaction
+=> #<Beer id: 21, name: "Nanny State", style: "lowalcohol", brewery_id: 11, created_at: "2014-01-18 12:24:52", updated_at: "2014-01-18 12:24:52">
+irb(main):004:0> punk.ratings.create score:10
+   (0.2ms)  begin transaction
+  SQL (1.0ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 20], ["created_at", Sat, 18 Jan 2014 12:25:00 UTC +00:00], ["score", 10], ["updated_at", Sat, 18 Jan 2014 12:25:00 UTC +00:00]]
+   (134.8ms)  commit transaction
+=> #<Rating id: 7, score: 10, beer_id: 20, created_at: "2014-01-18 12:25:00", updated_at: "2014-01-18 12:25:00">
+irb(main):005:0> punk.ratings.create score:15
+   (0.3ms)  begin transaction
+  SQL (1.2ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 20], ["created_at", Sat, 18 Jan 2014 12:25:01 UTC +00:00], ["score", 15], ["updated_at", Sat, 18 Jan 2014 12:25:01 UTC +00:00]]
+   (142.6ms)  commit transaction
+=> #<Rating id: 8, score: 15, beer_id: 20, created_at: "2014-01-18 12:25:01", updated_at: "2014-01-18 12:25:01">
+
+irb(main):006:0> nanny.ratings.create score:5
+NameError: undefined local variable or method `nanny' for main:Object
+        from (irb):6
+        from /home/svkoskin/.rbenv/versions/2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.0.2/lib/rails/commands/console.rb:90:in `start'
+        from /home/svkoskin/.rbenv/versions/2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.0.2/lib/rails/commands/console.rb:9:in `start'
+        from /home/svkoskin/.rbenv/versions/2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.0.2/lib/rails/commands.rb:62:in `<top (required)>'
+        from bin/rails:4:in `require'
+        from bin/rails:4:in `<main>'
+
+# lol oho
+
+irb(main):007:0> ns.ratings.create score:5
+   (0.3ms)  begin transaction
+  SQL (1.3ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 21], ["created_at", Sat, 18 Jan 2014 12:25:14 UTC +00:00], ["score", 5], ["updated_at", Sat, 18 Jan 2014 12:25:14 UTC +00:00]]
+   (139.3ms)  commit transaction
+=> #<Rating id: 9, score: 5, beer_id: 21, created_at: "2014-01-18 12:25:14", updated_at: "2014-01-18 12:25:14">
+irb(main):008:0> ns.ratings.create score:7
+   (0.3ms)  begin transaction
+  SQL (1.2ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 21], ["created_at", Sat, 18 Jan 2014 12:25:18 UTC +00:00], ["score", 7], ["updated_at", Sat, 18 Jan 2014 12:25:18 UTC +00:00]]
+   (143.4ms)  commit transaction
+=> #<Rating id: 10, score: 7, beer_id: 21, created_at: "2014-01-18 12:25:18", updated_at: "2014-01-18 12:25:18">
+irb(main):009:0> 
+svkoskin@granholmen:~/railskurssi/ratebeer$ 
