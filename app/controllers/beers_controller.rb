@@ -40,7 +40,7 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    @beer = Beer.new(params[:beer])
+    @beer = Beer.new(beer_params)
 
     respond_to do |format|
       if @beer.save
@@ -59,7 +59,7 @@ class BeersController < ApplicationController
     @beer = Beer.find(params[:id])
 
     respond_to do |format|
-      if @beer.update_attributes(params[:beer])
+      if @beer.update_attributes(beer_params)
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +79,11 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def beer_params
+    params.require(:beer).permit(:name, :style, :brewery_id)
   end
 end

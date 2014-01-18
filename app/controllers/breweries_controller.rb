@@ -40,7 +40,7 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
-    @brewery = Brewery.new(params[:brewery])
+    @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
       if @brewery.save
@@ -59,7 +59,7 @@ class BreweriesController < ApplicationController
     @brewery = Brewery.find(params[:id])
 
     respond_to do |format|
-      if @brewery.update_attributes(params[:brewery])
+      if @brewery.update_attributes(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +79,11 @@ class BreweriesController < ApplicationController
       format.html { redirect_to breweries_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def brewery_params
+    params.require(:brewery).permit(:name, :year)
   end
 end
