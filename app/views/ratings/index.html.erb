@@ -1,9 +1,9 @@
 <h1>List of ratings</h1>
-<p><%= link_to 'Create a new rating', ratings_new_path %></p>
+<p><%= link_to 'Create a new rating', new_rating_path %></p>
 <p>Number of ratings: <%= @ratings.count %> </p>
 
 <ul>
   <% @ratings.each do |r| %>
-  <li> <%= r %> </li>
+  <li> <%= r %> <%= link_to 'delete', rating_path(r.id), :method => :delete %></li>
   <% end %>
 </ul>
