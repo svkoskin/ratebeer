@@ -9,30 +9,23 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended that you check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140118120127) do
+ActiveRecord::Schema.define(:version => 20140112210519) do
 
-  create_table "beers", force: true do |t|
+  create_table "beers", :force => true do |t|
     t.string   "name"
     t.string   "style"
     t.integer  "brewery_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "breweries", force: true do |t|
+  create_table "breweries", :force => true do |t|
     t.string   "name"
     t.integer  "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ratings", force: true do |t|
-    t.integer  "score"
-    t.integer  "beer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
