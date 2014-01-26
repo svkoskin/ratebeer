@@ -10,7 +10,12 @@
 <h2>ratings</h2>
 <ul>
   <% @user.ratings.each do |r| %>
-    <li><%= r.beer.name %> <%= r.score %> <%= link_to 'delete', rating_path(r), method: :delete %></li>
+    <li>
+      <%= r.beer.name %> <%= r.score %> 
+      <% if @user == current_user %>
+       <%= link_to 'delete', rating_path(r), method: :delete %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 <% end %>
