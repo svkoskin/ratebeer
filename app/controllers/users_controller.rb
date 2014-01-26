@@ -32,16 +32,20 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      redirect_to :back
     end
   end
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    @user.destroy if @user == current_user
     redirect_to :back
   end
 
