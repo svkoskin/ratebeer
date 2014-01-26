@@ -15,6 +15,6 @@ class User < ActiveRecord::Base
     minimum: 4
   }
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
 end
