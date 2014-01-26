@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :fetch_related, :only => [:new, :edit]
+  before_action :fetch_related, :only => [:new, :edit, :create]
 
   # GET /beers
   # GET /beers.json
@@ -26,6 +26,8 @@ class BeersController < ApplicationController
   # GET /beers/new
   # GET /beers/new.json
   def new
+    @beer = Beer.new
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beer }
@@ -34,6 +36,7 @@ class BeersController < ApplicationController
 
   # GET /beers/1/edit
   def edit
+    @beer = Beer.find(params[:id])
   end
 
   # POST /beers
@@ -87,7 +90,6 @@ class BeersController < ApplicationController
   end
 
   def fetch_related
-    @beer = Beer.find(params[:id])
     @breweries = Brewery.all
     @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
   end
