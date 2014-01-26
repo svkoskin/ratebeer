@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.username %></h1>
-<p>has made <%= pluralize(@user.ratings.count, 'rating') %> (average score <%= @user.average_rating %>)</p>
+<p>has made <%= pluralize(@user.ratings.count, 'rating') %> 
+<% if (@user.ratings.count > 0) %>
+  (average score <%= @user.average_rating %>)
+<% end %></p>
 
-<% unless @user.ratings.nil? %>
+<% unless @user.ratings.count == 0 %>
 <h2>ratings</h2>
 <ul>
   <% @user.ratings.each do |r| %>
