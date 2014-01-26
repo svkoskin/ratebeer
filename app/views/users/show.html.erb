@@ -20,6 +20,15 @@
 </ul>
 <% end %>
 
+<% unless @user.beer_clubs.count == 0 %>
+ <p>
+   member of 
+   <% @user.beer_clubs.each do |c| %>
+     <%= link_to c.to_s, beer_club_path(c) %>
+   <% end %>
+ </p>
+<% end %>
+
 <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>
   <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
