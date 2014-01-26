@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user == current_user
+    if user_params.username.nil? and @user == current_user and @user.update(user_params)
       if @user.update(user_params)
         redirect_to @user, notice: 'User was successfully updated.'
       else
