@@ -46,7 +46,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy if @user == current_user
-    redirect_to :back
+
+    session.clear
+    
+    redirect_to root_path
   end
 
   private
