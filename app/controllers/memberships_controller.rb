@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
-  before_action :set_beer_clubs, only: [:new, :edit]
+  before_action :set_beer_clubs, only: [:new, :edit, :create]
 
   # GET /memberships
   def index
