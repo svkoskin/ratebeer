@@ -10,8 +10,8 @@ class RatingsController < ApplicationController
 
   def create
     rating = Rating.create rating_params
-
-    redirect_to ratings_path
+    current_user.ratings << rating
+    redirect_to current_user
   end
 
   def destroy
