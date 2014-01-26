@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<h1><%= @user.username %></h1>
+<p>has made <%= pluralize(@user.ratings.count, 'rating') %> (average score <%= @user.average_rating %>)</p>
+
+<% unless @user.ratings.nil? %>
+<h2>ratings</h2>
+<ul>
+  <% @user.ratings.each do |r| %>
+    <li><%= r.beer.name %> <%= r.score %> <%= link_to 'delete', rating_path(r), method: :delete %></li>
+  <% end %>
+</ul>
+<% end %>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
