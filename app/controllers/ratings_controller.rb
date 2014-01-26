@@ -9,7 +9,8 @@ class RatingsController < ApplicationController
   end
 
   def create
-    Rating.create rating_params
+    rating = Rating.create rating_params
+
     redirect_to ratings_path
   end
 
