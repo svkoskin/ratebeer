@@ -2,4 +2,4 @@
 
 link:http://agile-brushlands-6055.herokuapp.com/breweries
 
-{rdoc-image:http://travis-ci.org/svkoskin/ratebeer.png}(https://travis-ci.org/svkoskin/ratebeer)
+{rdoc-image:http://travis-ci.org/svkoskin/ratebeer.png}[https://travis-ci.org/svkoskin/ratebeer]
