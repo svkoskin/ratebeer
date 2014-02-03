@@ -6,6 +6,7 @@ describe "Rating" do
   let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
   let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
   let!(:user) { FactoryGirl.create :user }
+  let!(:user2) { FactoryGirl.create :user2 }
 
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")
@@ -42,5 +43,17 @@ describe "Rating" do
 
     expect(page).to have_content "Karhu 10 Pekka"
     expect(page).to have_content "iso 3 20 Pekka"
+  end
+
+  it "when given and belong to a user, are shown on user's page" do
+    FactoryGirl.create :rating, user:user, beer:beer2
+    FactoryGirl.create :rating2, user:user, beer:beer1
+    FactoryGirl.create :rating2, user:user2, beer:beer1
+
+    visit user_path(user)
+    expect(page).to have_content "has made 2 ratings"
+
+    expect(page).to have_content "Karhu 10"
+    expect(page).to have_content "iso 3 20"
   end
 end
