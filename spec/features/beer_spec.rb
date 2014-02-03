@@ -20,8 +20,6 @@ describe "Beer" do
       click_button('Create Beer')    
     }.to change{Beer.count}.by(0)
 
-    puts current_path
-
     expect(current_path).to eq(beers_path)
     expect(page).to have_content "Name can't be blank"
   end
