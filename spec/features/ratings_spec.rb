@@ -51,9 +51,21 @@ describe "Rating" do
     FactoryGirl.create :rating2, user:user2, beer:beer1
 
     visit user_path(user)
+    
     expect(page).to have_content "has made 2 ratings"
 
     expect(page).to have_content "Karhu 10"
     expect(page).to have_content "iso 3 20"
+  end
+
+  it "when removed, will disappear" do
+    FactoryGirl.create :rating, user:user, beer:beer2
+    FactoryGirl.create :rating2, user:user, beer:beer1
+
+    visit user_path(user)
+    page.find('li', :text => 'Karhu').click_link('delete')
+
+    expect(user.ratings.count).to eq(1)
+    expect(page).to have_content "has made 1 rating"    
   end
 end
