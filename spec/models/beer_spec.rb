@@ -16,7 +16,7 @@ describe Beer do
   end
 
   it "is not saved without a style" do
-    beer = beer.create name:"Kilju", style:""
+    beer = Beer.create name:"Kilju", style:""
 
     expect(beer.valid?).to be(false)
     expect(Beer.count).to eq(0)
