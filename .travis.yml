@@ -1,10 +1,14 @@
 language: ruby
-
 rvm:
- - 2.1.0
-
+- 2.1.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  api_key:
+    secure: B/8uNFvMdwY3k/fb40h0FWpxq6JQxGFFXXSjKYvIHWtMcSEimMEvmb1r6lnQLovUN6PoCqrYF5o4qofMzTPdvFVsGwSg7lvutsfvOZkDKzeguAMZVtBjewrMzF6WCvDwJ1pDn++nY5NgJVY2kDt0NGeP0o4TyYohgyv99xTR59Y=
+  app: agile-brushlands-6055
+  run: "rake db:migrate"
+
