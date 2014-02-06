@@ -1,5 +1,6 @@
 class BeersController < ApplicationController
   before_action :ensure_that_signed_in, :except => [:index, :show]
+  before_action :ensure_that_admin, :only => [:destroy]
   before_action :fetch_related, :only => [:new, :edit, :create]
 
   # GET /beers
