@@ -1,5 +1,5 @@
 class BreweriesController < ApplicationController
-  before_action :authenticate, :only => [:destroy]
+  before_action :ensure_that_signed_in, :except => [:index, :show]
 
   # GET /breweries
   # GET /breweries.json
