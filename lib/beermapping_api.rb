@@ -18,8 +18,8 @@ class BeermappingApi
       set << Place.new(location)
     end
   end
-
+  
   def self.api_key
-    '656e871044a324d7d6fea7efc11f3f1a'
+    Settings.beermapping_apikey
   end
 end

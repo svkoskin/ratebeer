@@ -41,6 +41,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'rails-settings-cached', '0.3.1'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
