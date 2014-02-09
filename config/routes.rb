@@ -8,6 +8,9 @@ Ratebeer::Application.routes.draw do
   resources :beers
   resources :breweries
   resources :ratings, :only => [:index, :new, :create, :destroy]
+  
+  get 'places', to: 'places#index'
+  post 'places', to: 'places#search'
 
   resources :users
   get 'signup', to: 'users#new'
