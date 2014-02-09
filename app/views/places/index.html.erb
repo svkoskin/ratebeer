@@ -19,8 +19,10 @@
 	<% Place.rendered_fields.each do |f| %>
 	  <td><%= place.send(f) %></td>
 	<% end %>
+	<td><%= link_to 'Details', place_path(place.id) %></td>
       </tr>
     <% end %>
   </table>
 <% end %>
+
 
