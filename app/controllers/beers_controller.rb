@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :ensure_that_signed_in, :except => [:index, :show]
+  before_action :ensure_that_signed_in, :except => [:index, :show, :list, :nglist]
   before_action :ensure_that_admin, :only => [:destroy]
   before_action :fetch_related, :only => [:new, :edit, :create]
 
@@ -15,11 +15,12 @@ class BeersController < ApplicationController
       when 'brewery' then @beers.sort_by!{ |b| b.brewery.name }
       when 'style' then @beers.sort_by!{ |b| b.style }
     end
+  end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @beers }
-    end
+  def list    
+  end
+
+  def nglist
   end
 
   # GET /beers/1

@@ -48,8 +48,9 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'httparty'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jquery-turbolinks'
+
+gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'
