@@ -9,6 +9,7 @@ gem 'rails', '4.0.2'
 
 group :development do
   gem 'rails_layout'
+  gem 'rack-mini-profiler'
 end   
 
 group :development, :test do
