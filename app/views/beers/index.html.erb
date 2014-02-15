@@ -17,7 +17,7 @@
     <td><%= link_to beer.brewery.name, beer.brewery %></td>
     <td><%= link_to 'Show', beer %></td>
     <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-    <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin %></td>
+    <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if not current_user.nil? and current_user.admin %></td>
   </tr>
 <% end %>
 </table>
