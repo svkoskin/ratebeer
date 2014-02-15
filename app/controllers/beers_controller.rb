@@ -8,6 +8,14 @@ class BeersController < ApplicationController
   def index
     @beers = Beer.all
 
+    order = params[:order] || 'name'
+
+    case order
+      when 'name' then @beers.sort_by!{ |b| b.name }
+      when 'brewery' then @beers.sort_by!{ |b| b.brewery.name }
+      when 'style' then @beers.sort_by!{ |b| b.style }
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beers }
