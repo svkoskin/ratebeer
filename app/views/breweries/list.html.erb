@@ -1,0 +1,37 @@
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+<script>
+    function BreweriesController($scope, $http) {
+        $http.get('breweries.json').success( function(data, status, headers, config) {
+            $scope.breweries = data;
+        });
+
+        $scope.order = 'name';
+
+        $scope.orderBy = function (criteria){
+            $scope.order = criteria;
+        }
+    }
+</script>
+
+<h2>Breweries</h2>
+
+<div ng-app ng-controller="BreweriesController">
+  <table>
+    <thead>
+      <th><a ng-click="orderBy('name')">Name</a></th>
+      <th><a ng-click="orderBy('year')">Founded</a></th>
+      <th><a ng-click="orderBy('beers.count')">Number of beers</a></th>
+    </thead>
+    <tr ng-repeat="brewery in breweries | orderBy:order ">
+      <td>
+	{{brewery.name}}
+      </td>
+      <td>
+	{{brewery.year}}
+      </td>
+      <td>
+	{{brewery.beers.count}}
+      </td>
+    </tr>
+  </table>
+</div>
