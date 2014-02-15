@@ -5,7 +5,12 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
+    order = params[:order] || 'name'
+
+    case order
+      when 'name' then @breweries = Brewery.all.order('breweries.name')
+      when 'year' then @breweries = Brewery.all.order('breweries.year')
+    end
 
     respond_to do |format|
       format.html # index.html.erb
