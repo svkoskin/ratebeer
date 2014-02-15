@@ -30,4 +30,11 @@ describe "Beerlist page" do
     visit beerlist_path
     expect(page).to have_content "Nikolai"
   end
+
+  it "beers are ordered by their name by default", js:true do
+    visit beerlist_path
+    find('table').find('tr:nth-child(2)').should have_content('Fastenbier')
+    find('table').find('tr:nth-child(3)').should have_content('Lechte Weisse')
+    find('table').find('tr:nth-child(4)').should have_content('Nikolai')
+  end
 end
