@@ -7,6 +7,10 @@ gem 'rails', '4.0.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem 'rails_layout'
+end   
+
 group :development, :test do
   gem 'sqlite3'
   
@@ -50,9 +54,13 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'httparty'
 
+gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 gem 'jbuilder'
+
+gem 'bootstrap-sass'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
