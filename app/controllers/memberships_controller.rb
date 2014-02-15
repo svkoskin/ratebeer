@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
 
     if @membership.save
-      redirect_to current_user, notice: 'Membership was successfully created.'
+      redirect_to beer_club_path(@membership.beer_club), notice: "Welcome to the club, #{current_user.username}!"
     else
       render action: 'new'
     end

@@ -13,6 +13,12 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.beer_club = @beer_club
+    
+    if current_user and not Membership.find_by_user_id_and_beer_club_id(current_user.id, @beer_club.id).nil?
+      @current_user_is_a_member = true
+    else
+      @current_user_is_a_member = false
+    end
   end
 
   # GET /beer_clubs/new
