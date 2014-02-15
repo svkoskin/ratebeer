@@ -11,11 +11,6 @@ class BreweriesController < ApplicationController
       when 'name' then @breweries = Brewery.all.order('breweries.name')
       when 'year' then @breweries = Brewery.all.order('breweries.year')
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @breweries }
-    end
   end
 
   # GET /breweries/1
@@ -27,6 +22,9 @@ class BreweriesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @brewery }
     end
+  end
+
+  def list
   end
 
   # GET /breweries/new
