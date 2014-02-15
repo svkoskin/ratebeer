@@ -30,7 +30,7 @@
 <% end %>
 
 <% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-xs btn-primary' %>
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
 <% end %>
-<%= link_to 'Back', users_path %>
+<p><%= link_to 'Back', users_path %></p>

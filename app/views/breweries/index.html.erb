@@ -14,13 +14,11 @@
   <tr>
     <td><%= link_to brewery.name, brewery %></td>
     <td><%= brewery.year %></td>
-    <td><%= link_to 'Edit', edit_brewery_path(brewery) %></td>
-    <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin unless current_user.nil? %></td>
+    <td><%= link_to 'Edit', edit_brewery_path(brewery), class:'btn btn-xs btn-primary' %></td>
+    <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-xs btn-danger' if current_user.admin unless current_user.nil? %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Brewery', new_brewery_path %>
-<%= link_to 'List all beers', beers_path %>
+<p><%= link_to 'New Brewery', new_brewery_path, class:'btn btn-xs btn-primary' %></p>
+<p><%= link_to 'List all beers', beers_path %></p>

@@ -18,9 +18,9 @@
         <td><%= beer_club.name %></td>
         <td><%= beer_club.founded %></td>
         <td><%= beer_club.city %></td>
-        <td><%= link_to 'Show', beer_club %></td>
-        <td><%= link_to 'Edit', edit_beer_club_path(beer_club) %></td>
-        <td><%= link_to 'Destroy', beer_club, method: :delete, data: { confirm: 'Are you sure?' } if current_user and current_user.admin %></td>
+        <td><%= link_to 'Show', beer_club, class:'btn btn-xs btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_beer_club_path(beer_club), class:'btn btn-xs btn-primary' %></td>
+        <td><%= link_to 'Destroy', beer_club, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' } if current_user and current_user.admin %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Beer club', new_beer_club_path %>
+<%= link_to 'New Beer club', new_beer_club_path, class:'btn btn-xs btn-primary' %>

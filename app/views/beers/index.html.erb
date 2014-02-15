@@ -15,15 +15,13 @@
     <td><%= beer.name %></td>
     <td><%= beer.style %></td>
     <td><%= link_to beer.brewery.name, beer.brewery %></td>
-    <td><%= link_to 'Show', beer %></td>
-    <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-    <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if not current_user.nil? and current_user.admin %></td>
+    <td><%= link_to 'Show', beer, class:'btn btn-xs btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_beer_path(beer), class:'btn btn-xs btn-primary' %></td>
+    <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if not current_user.nil? and current_user.admin %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<p><%= link_to 'New Beer', new_beer_path, class:'btn btn-xs btn-primary' %></p>
 
-<%= link_to 'New Beer', new_beer_path %>
-
-<%= link_to 'List all breweries', breweries_path %>
+<p><%= link_to 'List all breweries', breweries_path %></p>
