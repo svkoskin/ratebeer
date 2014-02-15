@@ -19,7 +19,7 @@
   <% if @brewery.ratings.empty? %>
   There is no ratings for beers of this brewery.
   <% else %>
-  <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %>
+  <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= round @brewery.average_rating %>
   <% end %>
 </p>
 

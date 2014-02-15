@@ -3,7 +3,7 @@
     <th>
     </th>
     <th>
-      <strong><%= label %>
+      <strong><%= label %></strong>
     </th>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
       </td>
       <td>
 	<% if label == 'average' %>
-          <%= elem.average_rating %>
+          <%= round elem.average_rating %>
 	<% end %>
 	<% if label == 'ratings' %>
           <%= elem.ratings.count %> 
