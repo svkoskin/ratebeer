@@ -8,9 +8,13 @@ class BreweriesController < ApplicationController
     order = params[:order] || 'name'
 
     case order
-      when 'name' then @breweries = Brewery.all.order('breweries.name')
-      when 'year' then @breweries = Brewery.all.order('breweries.year')
-    end
+      when 'name' 
+        @active_breweries = Brewery.active.order('breweries.name')
+        @retired_breweries = Brewery.retired.order('breweries.name')
+      when 'year'
+        @active_breweries = Brewery.active.order('breweries.name')  
+        @retired_breweries = Brewery.retired.order('breweries.year')
+    end    
   end
 
   # GET /breweries/1
@@ -89,15 +93,7 @@ class BreweriesController < ApplicationController
 
   private
 
-  def authenticate
-    passwords_for_admin_accounts = {"admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
-    
-    authenticate_or_request_with_http_basic do |username, password|
-      passwords_for_admin_accounts[username] == password
-    end
-  end
-
   def brewery_params
-    params.require(:brewery).permit(:name, :year)
+    params.require(:brewery).permit(:name, :year, :active)
   end
 end

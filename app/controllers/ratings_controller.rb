@@ -1,11 +1,9 @@
 class RatingsController < ApplicationController
   def index
-    @ratings = Rating.all
-
-    respond_to do |format|
-      format.html { }
-      format.json { render json: @ratings }
-    end
+    @recent_ratings = Rating.recent
+    @best_breweries = Brewery.top 3
+    @best_beers = Beer.top 3
+    @most_active_users = User.top 3
   end
 
   def new

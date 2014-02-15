@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @beer_club.to_s %></h1>
 
 <p>Founded <%= @beer_club.founded %></p>
@@ -18,7 +16,7 @@
 <% if current_user and not @current_user_is_a_member %>
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
-    <%= f.submit value:'Join the club' %>
+    <%= f.submit class:'btn btn-primary' value:'Join the club' %>
   <% end %>
 <% end %>
 

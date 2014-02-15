@@ -1,11 +1,30 @@
-<h1>List of ratings</h1>
+<h1>Rating statistics</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Best beers</h3>
+    <%= render 'list_1', data: @best_beers, label: 'average' %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>Best breweries</h3>
+    <%= render 'list_1', data: @best_breweries, label: 'average' %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>Most active users</h3>
+    <%= render 'list_1', data: @most_active_users, label: 'ratings' %>
+  </div>
+</div>
+
+<h3>Recent ratings</h3>
+<ul>
+  <% @recent_ratings.each do |r| %>
+    <li><%= r %> <%= link_to r.user.username, user_path(r.user) %></li>
+  <% end %>
+</ul>
+
 <% unless current_user.nil? %>
  <p><%= link_to 'Create a new rating', new_rating_path %></p>
 <% end %>
-<p>Number of ratings: <%= @ratings.count %> </p>
 
-<ul>
-  <% @ratings.each do |r| %>
-  <li> <%= r %> <%= link_to r.user.username, user_path(r.user) %></li>
-  <% end %>
-</ul>
