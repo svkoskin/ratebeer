@@ -12,6 +12,10 @@ Ratebeer::Application.routes.draw do
     post 'toggle_activity', on: :member
   end
 
+  resources :memberships do
+    get 'confirm', on: :member
+  end
+
   resources :ratings, :only => [:index, :new, :create, :destroy]
 
   get 'beerlist', to:'beers#list'

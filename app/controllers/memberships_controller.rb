@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_membership, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :set_beer_clubs, only: [:new, :edit, :create]
 
   # GET /memberships
@@ -24,9 +24,10 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(membership_params)
     @membership.user_id = current_user.id
+    @membership.confirmed = false
 
     if @membership.save
-      redirect_to beer_club_path(@membership.beer_club), notice: "Welcome to the club, #{current_user.username}!"
+      redirect_to beer_club_path(@membership.beer_club), notice: "Your membership is now pending approval from a member, #{current_user.username}."
     else
       render action: 'new'
     end
@@ -47,6 +48,15 @@ class MembershipsController < ApplicationController
     redirect_to memberships_url, notice: 'Membership was successfully destroyed.'
   end
 
+  def confirm
+    @membership.confirmed = true
+    if @membership.save
+      redirect_to beer_club_path(@membership.beer_club), notice: "Membership of #{@membership.user.username} confirmed succesfully."
+    else
+      redirect_to beer_club_path(@membership.beer_club), notice: "Something went wrong."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_membership
@@ -59,6 +69,6 @@ class MembershipsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
+      params.require(:membership).permit(:beer_club_id, :user_id, :confirmed)
     end
 end

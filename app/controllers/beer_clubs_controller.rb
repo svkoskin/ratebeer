@@ -13,11 +13,17 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.beer_club = @beer_club
+
+    @confirmed_users = User.joins(memberships: :beer_club).where('memberships.confirmed' => true, 'beer_clubs.id' => @beer_club.id)
     
-    if current_user and not Membership.find_by_user_id_and_beer_club_id(current_user.id, @beer_club.id).nil?
+    if current_user and not Membership.find_by_user_id_and_beer_club_id_and_confirmed(current_user.id, @beer_club.id, true).nil?
       @current_user_is_a_member = true
     else
       @current_user_is_a_member = false
+    end
+
+    if @current_user_is_a_member
+      @pending_memberships = Membership.where(beer_club: @beer_club, confirmed: false).all
     end
   end
 
@@ -32,10 +38,18 @@ class BeerClubsController < ApplicationController
 
   # POST /beer_clubs
   def create
-    @beer_club = BeerClub.new(beer_club_params)
+    @beer_club = BeerClub.new(beer_club_params)   
 
     if @beer_club.save
-      redirect_to @beer_club, notice: 'Beer club was successfully created.'
+
+      # Make the creating user a member of the bclub
+      @membership = Membership.new(beer_club: @beer_club, user: current_user, confirmed: true)
+
+      if @membership.save
+        redirect_to @beer_club, notice: 'Beer club was successfully created.'
+      else
+        render action: 'new'
+      end
     else
       render action: 'new'
     end

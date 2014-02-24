@@ -6,8 +6,19 @@
   <p>
     <strong>Members:</strong>
     <ul>
-      <% @beer_club.users.each do |m| %>
+      <% @confirmed_users.each do |m| %>
         <li><%= link_to m.username, user_path(m) %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<% unless @pending_memberships.nil? or @pending_memberships.count == 0 %>
+  <p>
+    <strong>Outstanding applications:</strong>
+    <ul>
+      <% @pending_memberships.each do |m| %>
+        <li><%= m.user.username %> <%= link_to 'confirm', confirm_membership_path(m.id), class:'btn btn-xs btn-primary' %></li>
       <% end %>
     </ul>
   </p>
@@ -16,9 +27,9 @@
 <% if current_user and not @current_user_is_a_member %>
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
-    <%= f.submit class:'btn btn-primary' value:'Join the club' %>
+    <%= f.submit class:'btn btn-primary', value:'Join the club' %>
   <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
-<%= link_to 'Back', beer_clubs_path %>
+<p><%= link_to 'Edit', edit_beer_club_path(@beer_club), class: 'btn btn-xs btn-primary' %></p>
+<p><%= link_to 'Back', beer_clubs_path %></p>

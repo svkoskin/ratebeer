@@ -56,6 +56,8 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      @confirmed_clubs = BeerClub.joins(users: :memberships).where('memberships.confirmed' => true, 'users.id' => @user)
+      @pending_clubs = BeerClub.joins(users: :memberships).where('memberships.confirmed' => false, 'users.id' => @user)
     end
 
     # Only allow a trusted parameter "white list" through.

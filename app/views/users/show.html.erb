@@ -21,7 +21,14 @@
 <% unless @user.beer_clubs.count == 0 %>
  <p>
    member of 
-   <% @user.beer_clubs.each do |c| %>
+   <% @confirmed_clubs.each do |c| %>
+     <%= link_to c.to_s, beer_club_path(c) %>
+   <% end %>
+ </p>
+
+ <p>
+   memberships waiting approval:
+   <% @pending_clubs.each do |c| %>
      <%= link_to c.to_s, beer_club_path(c) %>
    <% end %>
  </p>
